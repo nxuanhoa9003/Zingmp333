@@ -13,12 +13,6 @@ const container = $(".container");
 let iconBtnPlay, iconBtnPause, mobileNextSongFrom;
 function setIconPlayPauseMoblie(currentWidth) {
   if (player.className.includes("form__player") === false) {
-    if (currentWidth < 500) {
-      player.classList.add("player--moblie");
-    } else {
-      player.classList.remove("player--moblie");
-    }
-
     if (currentWidth < 767) {
       player.classList.add("player--middle");
       mobileNextSongFrom = true;
@@ -29,6 +23,12 @@ function setIconPlayPauseMoblie(currentWidth) {
       mobileNextSongFrom = false;
       iconBtnPlay = "fa-sharp fa-regular fa-circle-play";
       iconBtnPause = "fa-sharp fa-regular fa-circle-pause";
+    }
+
+    if (currentWidth < 500) {
+      player.classList.add("player--moblie");
+    } else {
+      player.classList.remove("player--moblie");
     }
   }
 }
@@ -1005,7 +1005,7 @@ const AppMusic = {
                 <i class="fa-solid fa-backward-step"></i>
               </button>
               <button class="btn--play">
-                <i class="fa-sharp fa-regular fa-circle-play"></i>
+                <i class="${iconBtnPlay}"></i>
               </button>
               <button class="btn--next">
                 <i class="fa-solid fa-forward-step"></i>
@@ -1481,7 +1481,7 @@ const AppMusic = {
   // đang xử lý
   handelEventFormPlayer: function () {
     window.addEventListener("resize", () => {
-      if ($(".btn--play i").className.includes("fa-circle-pause, fa-pause")) {
+      if ($(".info__audio-current").paused) {
         $(".btn--play").innerHTML = "";
         $(".btn--play").innerHTML = `<i class="${iconBtnPlay}"></i>`;
       } else {
@@ -1496,7 +1496,8 @@ const AppMusic = {
         (e.target.closest(".player-music ") &&
           e.target.closest(
             ".media__option--heart, .music__action, .music__timeline, .music__volume, .btn--movie, .btn--micro,  .btn__queue, .player__btn-close"
-          ) === null)
+          ) === null) ||
+        e.target.closest(".track__bar")
       ) {
         player.classList.remove("player--middle");
         player.classList.remove("player--moblie");
@@ -1572,8 +1573,8 @@ const AppMusic = {
       player.classList.remove("playing");
       sliderBar.style.height = "var(--sliderbar-height)";
       btnPlay.innerHTML = "";
-
       btnPlay.innerHTML = `<i class="${iconBtnPlay}"></i>`;
+
       $(".media__image .media__thumbnail").style.borderRadius = "4px";
       PLayListBodyType[_this.currentIndex].querySelector(
         ".icon__img--playing"
@@ -1626,13 +1627,21 @@ const AppMusic = {
 
     // play music when click icon play or pause music when click icon pause
     btnPlay.onclick = function (e) {
-      if (e.target.className.includes(`${iconBtnPlay}`)) {
-        e.target.classList.toggle(`${iconBtnPause.trim().split(" ").pop()}`);
-        e.target.classList.remove(`${iconBtnPlay.trim().split(" ").pop()}`);
+      if (btnPlay.querySelector("i").className.includes(`${iconBtnPlay}`)) {
+        btnPlay
+          .querySelector("i")
+          .classList.toggle(`${iconBtnPause.trim().split(" ").pop()}`);
+        btnPlay
+          .querySelector("i")
+          .classList.remove(`${iconBtnPlay.trim().split(" ").pop()}`);
         audio.play();
       } else {
-        e.target.classList.toggle(`${iconBtnPlay.trim().split(" ").pop()}`);
-        e.target.classList.remove(`${iconBtnPause.trim().split(" ").pop()}`);
+        btnPlay
+          .querySelector("i")
+          .classList.toggle(`${iconBtnPlay.trim().split(" ").pop()}`);
+        btnPlay
+          .querySelector("i")
+          .classList.remove(`${iconBtnPause.trim().split(" ").pop()}`);
         audio.pause();
       }
     };
