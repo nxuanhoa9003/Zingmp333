@@ -1,0 +1,744 @@
+/* CUTOM PLAYER */
+.player-music {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    height: 90px;
+    width: 100%;
+    background-color: var(--player-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 100;
+    cursor: pointer;
+    align-items: center;
+    overflow: hidden;
+    transition: height 0.7s ease-in-out;
+}
+
+.player-music.active {
+    display: flex;
+}
+/* thêm playing */
+.playing .player__media {
+    transform: translateX(20px);
+  }
+
+.player {
+    width: 100%;
+    padding: 0 20px;
+    position: relative;
+    inset: 0;
+  
+}
+  
+.player__wapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.player__media {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    transition: transform 0.3s ease;
+}
+
+  .media__image {
+    position: relative;
+    margin-right: 10px;
+  }
+
+.media__image .icon--music{
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: calc(50% - 5px);
+    left: calc(50% - 5px);
+    will-change: transform, opacity;
+}
+
+.media__image .media__thumbnail {
+    display: flex;
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    border-radius: 4px;
+    animation: thumbnailRoate .4s ease;
+    transition: border-radius .3s ease .3s;
+}
+
+.media__thumbnail img {
+    object-fit: cover;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1/1;
+}
+
+.playing .media__image .icon--music {
+    display: block;
+    font-size: 10px;
+}
+
+
+/*  animation khi chơi nhạc */
+.playing .media__image .media__thumbnail {
+    will-change: transform;
+    animation: rotateThumb 10s linear infinite;
+    -webkit-animation: rotateThumb 10s linear infinite;
+}
+
+@keyframes rotateThumb {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+/* animation khi nhạc chạy 4 icon music xoay  */
+.playing .media__image .icon--music.music-1 {
+    animation: circularMotion1 4.8s linear infinite;
+    -webkit-animation: circularMotion1 4.8s linear infinite;
+}
+
+.playing .media__image .icon--music.music-2 {
+    animation: circularMotion2 4.8s 1.2s linear infinite;
+    -webkit-animation: circularMotion2 4.8s 1.2s linear infinite;
+}
+
+.playing .media__image .icon--music.music-3 {
+    animation: circularMotion1 4.8s 1.5s linear infinite;
+    /* animation: circularMotion1 4.8s 2.4s linear infinite; */
+    -webkit-animation: circularMotion1 4.8s 2.4s linear infinite;
+}
+
+.playing .media__image .icon--music.music-4 {
+    animation: circularMotion2 4.8s 2s linear infinite;
+    /* animation: circularMotion2 4.8s 3.6s linear infinite; */
+    -webkit-animation: circularMotion2 4.8s 3.6s linear infinite;
+}
+
+@keyframes circularMotion1 {
+    0% {
+      opacity: 0;
+      transform: rotate(90deg) translateX(0px) rotate(-120deg) scale(0.5);
+    }
+    30% {
+      opacity: 0.55;
+      transform: rotate(140deg) translateX(35px) rotate(-150deg) scale(1);
+    }
+    
+    50% {
+      opacity: 1;
+      transform: rotate(180deg) translateX(50px) rotate(-190deg) scale(1.3)
+      rotate(10deg) rotate(15deg);
+    }
+    80% {
+        opacity: 0.03;
+        transform: rotate(245deg) translateX(75px) rotate(-245deg) scale(1.5)
+        rotate(30deg) rotate(40deg);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(260deg) translateX(100px) rotate(-270deg) scale(1.7)
+        rotate(-75deg) rotate(90deg);
+    }
+}
+
+@keyframes circularMotion2 {
+    0% {
+      opacity: 0;
+      transform: rotate(90deg) translateX(0px) rotate(-120deg) scale(0.5);
+    }
+    30% {
+      opacity: 0.55;
+      transform: rotate(135deg) translateX(35px) rotate(-145deg) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: rotate(180deg) translateX(50px) rotate(-190deg) scale(1.3)
+      rotate(10deg) rotate(25deg);
+    }
+    80% {
+      opacity: 1;
+      transform: rotate(245deg) translateX(75px) rotate(-245deg) scale(1.5)
+      rotate(15deg) rotate(35deg);
+  }
+    100% {
+      opacity: 0;
+      transform: rotate(280deg) translateX(100px) rotate(-280deg) scale(1.7)
+        rotate(50deg) rotate(50deg);
+    }
+}
+
+
+.media__body {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.media__info {
+  overflow: hidden;
+}
+
+.info__song-wrapper {
+  width: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.info__song--name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.36;
+  white-space: nowrap;
+  display: flex;
+  transition: all 0.3s linear;
+}
+
+.info__song--name span {
+  width: 100%;
+  margin-right: 20px;
+  display: flex;
+  white-space: nowrap;
+}
+
+.info__song--name span:last-child {
+  display: none;
+}
+
+.playing .info__song--name {
+  animation: titletotranslateX 6s linear infinite;
+}
+
+.playing .info__song--name span:last-child {
+  display: flex;
+}
+
+@keyframes titletotranslateX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.info__artist-current {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.media__option {
+  /* display: flex; */
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.media__option span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  margin: 0 5px;
+}
+
+.media__option span i {
+  display: block;
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+}
+
+.media__option .media__option--more,
+.media__option .media__option--heart {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 50%;
+}
+.media__option .media__option--more i {
+  font-size: 20px;
+}
+
+
+/* custom player controls */
+.player__control {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 20px 0 40px;
+}
+
+.music__action {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 20px; */
+}
+
+.music__action > * {
+    margin: 0 7px;
+    padding: 2px 3px;
+    display: flex;
+    align-items: center;
+}
+
+.music__action .btn--play i,
+.music__action .btn--pause i {
+  /* font-size: 40px !important; */
+  font-size: 40px;
+}
+
+.music__action .btn--play:hover {
+  color: var(--text-item-hover);
+}
+.music__action button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.music__action button i {
+  display: block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.btn--shuffle, .btn--prev, .btn--play, .btn--next, .btn--repeat, .time.left,  .time.right {
+  display: flex;
+}
+
+.music__timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 15px 0 10px;
+
+  position: relative;
+  height: 3px;
+  border-radius: 20px;
+}
+
+.time {
+  min-width: 45px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.time.left {
+  margin-right: 10px;
+  text-align: right;
+  opacity: 0.5;
+}
+
+.time.right {
+  margin-left: 10px;
+  justify-content: flex-end;
+}
+
+.timeline__duration {
+  flex: 1;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.track__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 15px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.track__bar {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    /* var(--progressbar-active-bg) 0%,
+    var(--progressbar-active-bg) 54%,
+    var(--progressbar-player-bg) 54%,
+    var(--progressbar-player-bg) 100% */
+    var(--progressbar-active-bg) 0%,
+    var(--progressbar-active-bg) 0%,
+    var(--progressbar-player-bg) 0%,
+    var(--progressbar-player-bg) 100%
+    
+  );
+}
+
+
+.track__wrapper:hover .track__bar,
+.music__volume:hover .track__bar {
+  height: 5px;
+}
+
+.thumb__bar {
+  width: 10px;
+  height: 10px;
+  visibility: hidden;
+}
+
+.track__wrapper:hover .thumb__bar,
+.music__volume:hover .thumb__bar {
+  visibility: visible;
+  width: 12px;
+  height: 12px;
+}
+
+.volume__track {
+  background: linear-gradient(
+    to right,
+    var(--progressbar-active-bg) 0%,
+    var(--progressbar-active-bg) 54%,
+    var(--progressbar-player-bg) 54%,
+    var(--progressbar-player-bg) 100% 
+  );
+}
+
+.thumb__bar {
+  width: 10px;
+  height: 10px;
+  visibility: hidden;
+  border-radius: 50%;
+  background-color: var(--progressbar-active-bg);
+  transform: translate(28.586843784507536px, -3.5px);
+}
+.input__duration, .input__volume {
+  /* display: none; */
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+
+
+.player__subcontrol {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 30%;
+}
+
+
+.btn--movie, .btn--micro, .btn--volume, .btn__queue {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin: 0 2px;
+  border-radius: 4px;
+}
+
+.btn--movie, .btn--micro {
+  display: none;
+}
+
+.btn__queue.active {
+  background-color: var(--purple-primary);
+  color: #fff;
+}
+
+.music__volume {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 5px;
+  max-width: 100px;
+}
+
+
+.music__volume > button {
+  padding: 3px 8px;
+}
+
+.music__divide {
+  height: 33px;
+  width: 1px;
+  background-color: var(--border-player);
+  margin: 0 20px;
+}
+
+
+/* start custom show card when hover btn next play */
+.modalNextSong {
+  background-color: rgba(12, 3, 3, 0.8);
+  width: 250px;
+  min-height: 50px;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 80;
+  bottom: 90px;
+  left: 46%;
+  display: none;
+ 
+}
+
+.modalNextSong::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  border-top-width: 8px;
+  border-left-width: 10px;
+  border-right-width: 10px;
+  border-color: transparent;
+  border-style: solid;
+  cursor: pointer;
+  border-top-color: rgba(12, 3, 3, 0.8);
+}
+
+.modalNextSong--container {
+  padding: 10px 5px 10px 10px;
+}
+
+.modalNextSong--title {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #b6b0b0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modalNextSong--info {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: 10px;
+}
+
+.modal__info--bcgSong {
+  width: 40px;
+  height: auto;
+  display: block;
+}
+
+.modal__info--bcgSong img {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 6px;
+}
+
+.modal__info--main {
+  width: 150px;
+}
+
+.main--namesong {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.main--namesinger {
+  color: #b6b0b0;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+/* end custom show card when hover btn next play */
+
+
+
+.player-music.form__player {
+    bottom: 0!important;
+    height: 100vh;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.form__player .player {
+  height: 100%;
+  backdrop-filter: blur(30px) brightness(0.6);
+  -webkit-backdrop-filter: blur(30px) brightness(0.6);
+}
+
+.form__player .player__wapper {
+  max-width: 600px;
+  height: 100%;
+  position: relative;
+  flex-direction: column;
+  padding-bottom: 60px;
+  margin: auto;
+} 
+
+.form__player .player__media {
+  width: 100%;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  transform: translateX(0);
+  margin-bottom: 5px;
+}
+
+.form__player .player__control {
+  width: 100%;
+  flex-grow: unset;
+  margin-bottom: 5px;
+}
+
+
+.form__player .media__image {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-right: 0;
+}
+
+.form__player .media__thumbnail {
+  width: 250px;
+  height: 250px;
+  margin: 70px 0 30px;
+
+}
+
+.form__player .media__thumbnail img  {
+  border-radius: 999px;
+}
+
+.form__player .player__control {
+  width: 100%;
+  flex-grow: unset;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.form__player .music__action {
+  order: 1;
+  justify-content: space-evenly;
+}
+
+.form__player .player .media__option,
+.form__player .time.left,
+.form__player .time.right,
+.form__player .player__subcontrol,
+.form__player .btn--shuffle,
+.form__player .btn--prev,
+.form__player .btn--repeat {
+  display: flex;
+}
+
+.form__player .btn--shuffle, .form__player .btn--repeat, .form__player .btn__queue {
+  position: absolute;
+  bottom: 20px;
+}
+
+.form__player .btn--shuffle {
+  left: 20%;
+  transform: translateX(-20%);
+}
+
+.form__player .btn__queue {
+  right: 20%;
+}
+
+.form__player .music__timeline {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+.form__player .timeline__duration {
+  position: unset;
+  width: 100%;
+  order: -1;
+  flex: 0 0 auto;
+}
+
+.form__player .player__subcontrol {
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.form__player .music__volume {
+  width: 100%;
+  max-width: unset;
+}
+
+.form__player .music__divided, .form__player .btn--movie, .form__player .btn--micro {
+  display: none;
+}
+
+.form__player .player__btn-close {
+  display: flex;
+}
+
+.player__btn-close {
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.player__ic-close {
+  width: 60px;
+  height: 6px;
+  border-radius: 8px;
+  background-color: gray;
+}
+.form__player .music__divide {
+  display: none;
+}
+
+.form__player .info__song-wrapper, 
+.form__player button ,
+.form__player .time.left,
+.form__player .time.right,
+.form__player .media__option  
+{
+  --text-primary: var(--white);
+ color: var(--text-primary);
+ 
+}
+
+.form__player .track__bar {
+  --progressbar-player-bg: #ffffff80;
+}
+
+.form__player .info__artist-current {
+  color: #ffffff80;
+}
+
+.form__player .modalNextSong {
+  display: none!important;
+}
+
+.form__player .track__wrapper:hover .thumb__bar {
+  visibility: visible;
+}

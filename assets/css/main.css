@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    scroll-behavior: smooth;
+    background-color: var(--layout-bg);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: Inter,sans-serif;;
+    font-weight: 400;
+    user-select: none;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+  color: inherit;
+  font: inherit;
+  background-color: transparent;
+}
+
+button {
+    cursor: pointer;
+    font-weight: 400;
+    position: relative;
+}
+
+ol, p, ul,li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+}
+
+a.active, a:hover {
+    color: var(--link-text-hover);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: 400;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+figure {
+  overflow: hidden;
+}
+
+.material-symbols-rounded {
+    font-size: 2rem;
+    user-select: none;
+    background: var(--player-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+
+/* custom style layout */
+.layout {
+    position: relative;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--layout-bg);
+    background-size: 1920px auto;
+    background-repeat: no-repeat;
+    overflow: hidden overlay;
+}
+
+/* Scrool */
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--scroll-thumb-bg);
+    -webkit-box-shadow: var(--scrool-box-shadow);
+}
+
+
+/* button */
+.btn {
+    width: 125px;
+    height: 28px;
+    font-size: 12px;
+    line-height: 28px;
+    display: block;
+    text-align: center;
+    border-radius: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+}

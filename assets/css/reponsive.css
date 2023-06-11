@@ -1,0 +1,331 @@
+@media only screen and (max-width: 992px) {
+    .theme__item--image:hover .theme__image--option {
+        display: none;
+    }
+    
+}
+@media only screen and (min-width: 889px) {
+    .media__option {
+        display: flex;
+    }
+
+    .btn--movie, .btn--micro {
+        display: flex;
+    }
+
+    .playlist-body--item .body-item--desc {
+        display: flex;
+    }
+}
+@media only screen and (min-width: 768px) {
+
+    .player-music {
+        bottom: -2px;
+        height: 92px;
+    }
+
+}
+@media only screen and (max-width: 850px) {
+
+    .body__img--option .img__option--heart, .body__img--option .img__option--more {
+        display: none!important;
+    }
+    .body__img--option {
+        justify-content: center;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px){
+    .playlist__info--bcg, .playlist__info--bcg img {
+        width: 160px;
+        height: 160px;
+    }
+    .playlist__menu--btnplay{
+        font-size: 10px;
+    }
+
+    .playlist__ContentMain--Song--body {
+        width: 100%;
+        margin-left: 20px;
+    }
+
+    .playlist-body--item .checkbox-wrapper {
+        display: none !important;
+    }
+
+}
+
+@media only screen and (max-width: 767px){
+
+    :root {
+        --sliderbar-height: 50px;
+        --header-padding: 0 20px;
+    }
+    .content {
+        padding:  0 20px;
+    }
+
+    .playlist__info {
+        display: none;
+    }
+    .playlist__ContentMain--Song--body {
+        width: 100%;
+    }
+
+    .footer--item img {
+        width: 100px;
+        height: 65px
+    }
+
+    .slidebar__logo, .slidebar__line, .slidebar__footer, .slidebar__addplay-play-list, .btn-expanded {
+        display: none;
+    }
+
+    .is-active {
+        border-left: none;
+    }
+    
+    .slidebar {
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+    }
+    .sidebar__list {
+        display: flex;
+        margin-bottom: 0;
+    }
+    .list--item {
+        flex-direction: column;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .list--item .item--icon {
+        margin: 0;
+    }
+
+
+    .player-music.player--middle{
+        height: 70px;
+    }
+
+    .player--middle .music__action button:not(.btn--play, .btn--next),
+    .player--middle .time.left,
+    .player--middle .time.right{
+        display: none;   
+    }
+
+    /* .player__control, .player__subcontrol { */
+    .player--middle .player__subcontrol {
+        display: none;
+    }
+   
+    .player--middle .media__image .media__thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+    .content {
+        margin-bottom: 120px;
+    }
+
+    .slide__btn, .artist__btn, .radio__btn {
+        display: none!important;
+    }
+
+    .player--middle .player__wapper, .player--middle .music__timeline {
+        position: unset;
+        
+    }
+
+    .player--middle .music__timeline {
+        height: 0;
+        width: 0;
+    }
+
+    .player--middle .timeline__duration {
+        position: absolute;
+        top: -18px;
+        bottom: unset;
+    }
+
+    .player--middle .music__action {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+    }
+
+    .player--middle .music__action .btn--play i {
+        font-size: 25px;
+    }
+
+    .input__duration {
+        display: none;
+    }
+
+    .track__wrapper:hover .thumb__bar {
+        visibility: hidden;
+    }
+
+    .playlist-body--item .checkbox-wrapper {
+        display: none !important;
+    }
+    
+    .body__img--option {
+        display: none!important;
+    }
+     
+}
+
+
+@media only screen and (max-width: 500px) {
+    /* * {
+        outline: 1px solid red;
+    } */
+    #root {
+        /* overflow-x: hidden; */
+    }
+    .section__body {
+        margin: 0 -5px;
+    }
+
+    .section--carousel {
+        overflow-x: overlay;
+    }
+
+    .explore__slider {
+        height: 30vh;
+    }
+
+    .explore__slider--body-item {
+        width: calc(calc(100% + 20px) / 1);
+    }
+
+    .arrow_left {
+        margin: 0 5px 0 -10px;
+    }
+
+    .nav_theme, .nav_vip, .arrow_right {
+        display: none;
+    }
+
+    .nav_right > div button:last-child {
+        margin-right: 0;
+    }
+
+    .suggest__list {
+        padding: 0;
+    }
+
+    .suggest--item .item--avt img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .footer--item {
+        height: 100px;
+        padding: 0 8px;
+    }
+
+    .footer--item img {
+        width: 65px;
+        height: 55px;
+        
+    }
+
+    .playlist-body {
+        margin-left: 0;
+    }
+
+    .personal__playlists--body {
+        flex-wrap: nowrap;
+        overflow-x: overlay;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+      }
+
+    .personal__playlists--body .playlists--body-child {
+        flex: 0 0 calc(100% / 3);
+        max-width: calc(100% / 3);
+    }
+
+    .mv--body-child:first-child .mv--body-child-wrap {
+        padding: 10px 15px;
+    }
+
+    .personal__mv--body {
+        flex-wrap: nowrap;
+        overflow-x: overlay;
+    }
+
+    .personal__mv--body .mv--body-child {
+        flex: 0 0 calc(100% / 1);
+        max-width: calc(100% / 1);
+    
+    }
+
+    .theme__body--item {
+        width: calc(100% /2);
+    }
+
+    .player--moblie.player-music {
+        height: 50px;
+    }
+
+    .player--moblie .media__image .media__thumbnail {
+        width: 40px;
+        height: 40px;
+    }
+
+    .player--moblie.playing .player__media {
+        transform: translateX(5px);
+    }
+
+    .player--moblie .timeline__duration { 
+        top: -4px;  
+    }
+    .track__wrapper {
+        height: 0;
+    }
+
+    .player--moblie .player__media {
+        width: 45%;
+    }
+
+    .playlist-body--item .checkbox-wrapper {
+        display: none !important;
+    }
+    .body-item--option .item--option-icon {
+        display: none;
+    }
+    .playlist__ContentMain--Song--body {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .list--item span {
+        font-size: 8px;
+    }
+
+    .presonal--head-right .btn-upload {
+        display: none;
+    }
+    .playlist-body--item .body-item--info {
+        width: 150px;
+    }
+
+    .body-item--option .item--option-icon {
+        display: none;
+    }
+
+    
+
+    
+}

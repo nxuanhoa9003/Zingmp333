@@ -1,0 +1,21 @@
+:root {
+
+    /* header root */
+    --header-width: calc(100% - 240px);
+    --header-scroll-bottom: 100%;
+    --header-padding: 0 59px;
+    --sliderbar-height: calc(100% - 90px);
+}
+
+.zm-btn {
+    font-size: 14px;
+    border-radius: 999px;
+    line-height: normal;
+    border: 0;
+    display: inline-block;
+    font-weight: 400;
+    text-transform: none;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
