@@ -50,8 +50,9 @@ const AppMusic = {
   arrSongsRandom: [],
   posSongCrurent: -1,
   bodyItemImagePos: "primary",
+  arrflagPlaylistSong: [],
   isCheckPLayList: false,
-  // parentNodePlayList: undefined,
+
   config: JSON.parse(localStorage.getItem(keyStorage)) || {}, // objec
 
   setConfig: function (key, value) {
@@ -70,6 +71,7 @@ const AppMusic = {
         ? this.config.currentPlayList
         : undefined;
     this.isCheckList = this.config.isCheckList || false;
+    this.arrflagPlaylistSong = this.config.indexflagPlaylistSong || [];
   },
 
   // set  property after load config
@@ -1286,10 +1288,14 @@ const AppMusic = {
           _this.renderContentPlayList(currElementClick);
           _this.isCheckPLayList = true;
           _this.currentPlayList = currElementClick;
-          // _this.isClick = true;
           _this.isClick = false;
-          _this.currentIndex = 0;
+          _this.isCheckList = true;
+
+          _this.currentIndex =
+            _this.arrflagPlaylistSong[_this.currentPlayList] || 0;
+
           _this.posSongCrurent = 0;
+
           _this.defineProperties(
             _this.PlayListAlbumData[currElementClick].listSongs
           );
@@ -1297,11 +1303,33 @@ const AppMusic = {
             "Album",
             _this.PlayListAlbumData[currElementClick].listSongs
           );
+
+          _this.loadCurrentSong();
+          player.classList.add("active");
+
+          if (currElementClick >= 0) {
+            (
+              $(`.playlist__ContentMain--Song.${_this.bodyItemImagePos}`) ||
+              $(".playlist-body.primary")
+            )
+              .querySelectorAll(".playlist-body--item")
+              [_this.currentIndex].querySelector(".img--icon i").style.display =
+              "block";
+
+            (
+              $(`.playlist__ContentMain--Song.${_this.bodyItemImagePos}`) ||
+              $(".playlist-body.primary")
+            )
+              .querySelectorAll(".playlist-body--item")
+              [_this.currentIndex].querySelector(".img--icon")
+              .style.setProperty("background-color", "var(--dark-alpha-50)");
+          }
+
           _this.setConfig("currentIndex", _this.currentIndex);
           _this.setConfig("isCheckPLayList", _this.isCheckPLayList);
+          _this.setConfig("isCheckList", _this.isCheckList);
           _this.setConfig("currentPlayList", _this.currentPlayList);
-          _this.loadCurrentSong();
-          // player.classList.remove("active");
+
           _this.handleEventMusic(
             _this.PlayListAlbumData[currElementClick].listSongs
           );
@@ -1343,7 +1371,7 @@ const AppMusic = {
             $(".personal__container--mv").classList.remove("hide");
             $(".personal__container--artist").classList.remove("hide");
             layout.style.overflowY = "scroll";
-            player.classList.remove("active");
+            // player.classList.remove("active");
 
             $(".playlist").style.paddingTop = "0px";
             layout.scrollTop = 0;
@@ -1352,7 +1380,7 @@ const AppMusic = {
             container.style.height = "calc(100% - 90px)";
             _this.isCheckPLayList = false;
             _this.isCheckList = false;
-            _this.currentPlayList = undefined;
+            // _this.currentPlayList = undefined;
             _this.bodyItemImagePos = "primary";
             _this.currentIndex = 0;
             _this.defineProperties(_this.ListMusic);
@@ -1501,8 +1529,7 @@ const AppMusic = {
 
   // handle event when click some item in tag music__option--list (tổng quan, bài hát, playlist, nghệ sĩ, mv, mv, tải lên)
 
-  handleEventMusic: function (dataAlbumMusic) {
-    const TypeMusicData = dataAlbumMusic;
+  handleEventMusic: function (TypeMusicData) {
     const _this = this;
     _this.rederPlayerMusic();
     // variables in player
@@ -1693,6 +1720,8 @@ const AppMusic = {
     // handle next song when audio ended
     audio.onended = function () {
       if (_this.isRepeatOne) {
+        _this.arrflagPlaylistSong[_this.currentPlayList] = this.currentIndex;
+        _this.setConfig("indexflagPlaylistSong", _this.arrflagPlaylistSong);
         audio.play();
       } else {
         handleIconPlayingPause();
@@ -1846,6 +1875,11 @@ const AppMusic = {
         ) {
           player.classList.add("active");
           _this.isCheckList = true;
+          if (_this.isCheckPLayList) {
+            _this.arrflagPlaylistSong[_this.currentPlayList] = index;
+            _this.setConfig("indexflagPlaylistSong", _this.arrflagPlaylistSong);
+          }
+
           if (_this.posSongCrurent === index) {
             audio && audio.paused ? audio.play() : audio.pause();
           } else {
@@ -1869,6 +1903,8 @@ const AppMusic = {
           handleIconPlayingPause();
           _this.setConfig("currentIndex", _this.currentIndex);
           _this.setConfig("isCheckList", _this.isCheckList);
+          // _this.isCheckPLayList &&
+          //   _this.setConfig("posSongCrurent", _this.posSongCrurent);
         }
       };
     });
@@ -1882,6 +1918,14 @@ const AppMusic = {
             _this.isCheckList = true;
             handleIconImg(element, index);
             addElementCardInfoNextSong(TypeMusicData);
+            if (_this.isCheckPLayList) {
+              _this.arrflagPlaylistSong[_this.currentPlayList] = index;
+              _this.setConfig(
+                "indexflagPlaylistSong",
+                _this.arrflagPlaylistSong
+              );
+            }
+
             _this.setConfig("isCheckList", _this.isCheckList);
           };
         });
@@ -1953,7 +1997,10 @@ const AppMusic = {
     if (this.currentIndex >= arrMusicData.length) {
       this.currentIndex = 0;
     }
+    this.arrflagPlaylistSong[this.currentPlayList] = this.currentIndex;
+    this.setConfig("indexflagPlaylistSong", this.arrflagPlaylistSong);
     this.setConfig("currentIndex", this.currentIndex);
+
     handleIconPlayingPause();
     this.loadCurrentSong();
   },
@@ -1964,6 +2011,8 @@ const AppMusic = {
     if (this.currentIndex < 0) {
       this.currentIndex = arrMusicData.length - 1;
     }
+    this.arrflagPlaylistSong[this.currentPlayList] = this.currentIndex;
+    this.setConfig("indexflagPlaylistSong", this.arrflagPlaylistSong);
     this.setConfig("currentIndex", this.currentIndex);
     handleIconPlayingPause();
     this.loadCurrentSong();
@@ -1988,7 +2037,9 @@ const AppMusic = {
 
     this.currentIndex = newIndex;
     this.loadCurrentSong();
-    _this.setConfig("currentIndex", _this.currentIndex);
+    this.arrflagPlaylistSong[this.currentPlayList] = this.currentIndex;
+    this.setConfig("indexflagPlaylistSong", this.arrflagPlaylistSong);
+    this.setConfig("currentIndex", this.currentIndex);
   },
 
   loadCurrentSong: function () {
