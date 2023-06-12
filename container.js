@@ -1714,15 +1714,17 @@ const AppMusic = {
 
     // show playslist when click btnQueue
     btnQueue.onclick = function () {
-      $(".playList__modal").style.display = "block";
-      if (btnQueue.className.includes("active")) {
-        $(".playList__modal").classList.add("is_hide");
-        $(".playList__modal").classList.remove("is_show");
-        btnQueue.classList.remove("active");
-      } else {
-        btnQueue.classList.add("active");
-        $(".playList__modal").classList.add("is_show");
-        $(".playList__modal").classList.remove("is_hide");
+      if (player.className.includes("form__player") === false) {
+        $(".playList__modal").style.display = "block";
+        if (btnQueue.className.includes("active")) {
+          $(".playList__modal").classList.add("is_hide");
+          $(".playList__modal").classList.remove("is_show");
+          btnQueue.classList.remove("active");
+        } else {
+          btnQueue.classList.add("active");
+          $(".playList__modal").classList.add("is_show");
+          $(".playList__modal").classList.remove("is_hide");
+        }
       }
     };
 
