@@ -72,7 +72,7 @@ function setWidthSliderBar(currentWidth) {
     $(".player-music").style.bottom = "0px";
   }
 
-  if (currentWidth <= 767) {
+  if (currentWidth < 767) {
     sliderBar.style.width = "100%";
     containerRespon.style.left = "0";
     containerRespon.style.width = "100vw";

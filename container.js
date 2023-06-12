@@ -12,17 +12,21 @@ const container = $(".container");
 
 let iconBtnPlay, iconBtnPause, mobileNextSongFrom;
 function setIconPlayPauseMoblie(currentWidth) {
+  if (currentWidth < 767) {
+    iconBtnPlay = "fa-sharp fa-solid fa-play";
+    iconBtnPause = "fa-sharp fa-solid fa-pause";
+  } else {
+    iconBtnPlay = "fa-sharp fa-regular fa-circle-play";
+    iconBtnPause = "fa-sharp fa-regular fa-circle-pause";
+  }
+
   if (player.className.includes("form__player") === false) {
     if (currentWidth < 767) {
       player.classList.add("player--middle");
       mobileNextSongFrom = true;
-      iconBtnPlay = "fa-sharp fa-solid fa-play";
-      iconBtnPause = "fa-sharp fa-solid fa-pause";
     } else {
       player.classList.remove("player--middle");
       mobileNextSongFrom = false;
-      iconBtnPlay = "fa-sharp fa-regular fa-circle-play";
-      iconBtnPause = "fa-sharp fa-regular fa-circle-pause";
     }
 
     if (currentWidth < 500) {
