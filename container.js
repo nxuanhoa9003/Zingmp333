@@ -1384,7 +1384,8 @@ const AppMusic = {
             container.style.height = "calc(100% - 90px)";
             _this.isCheckPLayList = false;
             _this.isCheckList = false;
-            // _this.currentPlayList = undefined;
+
+            _this.isClick = false;
             _this.bodyItemImagePos = "primary";
             _this.currentIndex = 0;
             _this.defineProperties(_this.ListMusic);
@@ -1567,8 +1568,10 @@ const AppMusic = {
     };
 
     if (_this.isClick) {
+      player.classList.add("playing");
       audio.play();
     } else {
+      player.classList.remove("playing");
       audio.pause();
     }
 
@@ -1918,8 +1921,6 @@ const AppMusic = {
           handleIconPlayingPause();
           _this.setConfig("currentIndex", _this.currentIndex);
           _this.setConfig("isCheckList", _this.isCheckList);
-          // _this.isCheckPLayList &&
-          //   _this.setConfig("posSongCrurent", _this.posSongCrurent);
         }
       };
     });
