@@ -1,7 +1,6 @@
 # Zingmp333
 
 
-Link deploy: 
-
+Link deploy:  https://nxuanhoa9003.github.io/Zingmp333
 
 
